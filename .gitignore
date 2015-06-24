@@ -1,0 +1,4 @@
+read_one_channel
+check_macros
+*.o
+*~
