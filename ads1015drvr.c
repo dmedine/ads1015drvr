@@ -2,7 +2,7 @@
 #include "string.h"
 #include "pthread.h"
 
-pthread_mutex_t device_lock = PTHREAD_MUTEX_INITIALIZER;
+//pthread_mutex_t device_lock = PTHREAD_MUTEX_INITIALIZER;
 
 t_ads1015 *ads1015_create(void){
 
@@ -31,7 +31,7 @@ t_ads1015 *ads1015_create(void){
   x->read_buf[1] = 0;
 
   strcpy(x->filename, "/dev/i2c-1");
-  ads1015_open_device(x);
+  ads1015_open(x);
 
   x->val = 0;
   x->verbose = 0;
@@ -65,9 +65,9 @@ void ads1015_open(t_ads1015 *x){
 void ads1015_set_configuration(t_ads1015 *x){
 
   x->write_buf[1] = OS_ON+x->input_sel+x->gains+x->op_mode;
-  if(x->verbose==1)printf("write_buf[1] : %#x\n", x->write_buf[1], x->write_buf[1]);
+  if(x->verbose==1)printf("write_buf[1] : %#x\n", x->write_buf[1]);
   x->write_buf[2] = x->dr+x->comp_mode+x->comp_pol+x->comp_latch+x->comp_queue;
-  if(x->verbose==1)printf("write_buf[2] : %#x\n", x->write_buf[2], x->write_buf[2]);
+  if(x->verbose==1)printf("write_buf[2] : %#x\n", x->write_buf[2]);
 }
 
 void ads1015_read_once(t_ads1015 *x){

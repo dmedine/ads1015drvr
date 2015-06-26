@@ -118,7 +118,7 @@ typedef struct _ads1015{
 
 t_ads1015 *ads1015_create(void); // simply creates a t_ads1015 object with defualt values
 void ads1015_set_configuration(t_ads1015 *x); // sets the write configuration, doesn't need to happen every time...
-void ads1015_open_device(t_ads1015 *x);
+void ads1015_open(t_ads1015 *x);
 void ads1015_read_once(t_ads1015 *x); // performs the read/write procedure once
 void *ads1015_read_continuous(void *y); // does the r/w in an infinite loop on a separate thread
 void ads1015_launch_continuous(t_ads1015 *x); // launches the r/w loop
